@@ -1,0 +1,42 @@
+*{
+  font-family: sans-serif;
+  color: #1b1b1b;
+}
+
+h2{
+  margin-bottom: 0.5rem;
+}
+
+.metricsContainer{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+
+.metric{
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #797979;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+.metric h3{
+  margin-top: 0px;
+  border-bottom: 1px solid #b8b8b8;
+  color: #268d4e;
+}
+.metric ul{
+  margin-bottom: 0px;
+}
+.metric li{
+  list-style: none;
+  margin-bottom: 0.3rem;
+}
+
+
+.changeMessage{
+  font-size: 1rem;
+  color: #268d4e;
+}

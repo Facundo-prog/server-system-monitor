@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/system-monitor/styles.css">
+  
+  <title>System monitor</title>
+</head>
+<body>
+  <h2>System information</h2>
+  <div class="metricsContainer" id="info">
+    <p class="changeMessage">Cargando...</p>
+  </div>
+  
+  <h2>Realtime information</h2>
+  <div class="metricsContainer" id="realtime">
+    <p class="changeMessage">Cargando...</p>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const info = document.getElementById('info');
+      const realtime = document.getElementById('realtime');
+
+      fetch('http://localhost:3000/system-monitor/api/v1')
+      .then((res) => res.json())
+      .then((metrics) => {
+        let html = "";
+
+        for(let type in metrics){
+          html += `<div class="metric"><h3>${type}</h3>`;
+          for(let name in metrics[type]){
+            html += `<li><b>${name}: </b>${metrics[type][name]}</li>`;
+          }
+          html += `</div>`
+        }
+
+        info.innerHTML = html;
+      });
+
+      setInterval(() => {
+        fetch('http://localhost:3000/system-monitor/api/v1/realtime')
+        .then((res) => res.json())
+        .then((val) => {
+          showRealtimeInfo(val);
+        });
+      }, 5000);
+
+
+      function showRealtimeInfo(metrics){
+        let html = "";
+
+        for(let type in metrics){
+          html += `<div class="metric"><h3>${type}</h3>`;
+          for(let name in metrics[type]){
+            html += `<li><b>${name}: </b>${metrics[type][name]}</li>`;
+          }
+          html += `</div>`
+        }
+
+        realtime.innerHTML = html;
+      }
+    });
+  </script>
+</body>
+</html>
