@@ -21,10 +21,11 @@
 
   <script>
     window.addEventListener('load', () => {
+      const errorMessage = document.getElementById('errorMessage');
       const info = document.getElementById('info');
       const realtime = document.getElementById('realtime');
 
-      fetch('http://localhost:3000/system-monitor/api/v1')
+      fetch(`http://${location.host}/system-monitor/api/v1`)
       .then((res) => res.json())
       .then((metrics) => {
         let html = "";
@@ -38,13 +39,20 @@
         }
 
         info.innerHTML = html;
+      })
+      .catch(() => {
+        info.innerHTML = '<p class="errorMessage" id="errorMessage">¡Error connection!</p>';
       });
 
-      setInterval(() => {
-        fetch('http://localhost:3000/system-monitor/api/v1/realtime')
+      const interval = setInterval(() => {
+        fetch(`http://${location.host}/system-monitor/api/v1/realtime`)
         .then((res) => res.json())
         .then((val) => {
           showRealtimeInfo(val);
+        })
+        .catch(() => {
+          realtime.innerHTML = '<p class="errorMessage" id="errorMessage">¡Error connection!</p>';
+          clearInterval(interval);
         });
       }, 5000);
 

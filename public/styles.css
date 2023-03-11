@@ -39,4 +39,11 @@ h2{
 .changeMessage{
   font-size: 1rem;
   color: #268d4e;
+  font-weight: bold;
+}
+
+.errorMessage{
+  font-size: 1rem;
+  font-weight: bold;
+  color: #b13e36;
 }
