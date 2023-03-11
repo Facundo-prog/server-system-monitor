@@ -10,6 +10,7 @@ h2{
 .metricsContainer{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 
@@ -24,7 +25,7 @@ h2{
 }
 .metric h3{
   margin-top: 0px;
-  border-bottom: 1px solid #b8b8b8;
+  margin-bottom: 0.5rem;
   color: #268d4e;
 }
 .metric ul{
@@ -46,4 +47,11 @@ h2{
   font-size: 1rem;
   font-weight: bold;
   color: #b13e36;
+}
+
+
+@media screen and (max-width: 750px){ 
+  .metricsContainer {
+    flex-direction: column;
+  }
 }
