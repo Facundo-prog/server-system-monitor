@@ -42,9 +42,9 @@ async function getRealTimeInfo(){
       value: `${(cpuLoad.currentLoad).toFixed(2)} %`
     },
     temperature: {
-      board: `${(temp.main ?? 0).toFixed(1)} °C`,
-      chipset: `${(temp.chipset ?? 0).toFixed(1)} °C`,
-      max: `${(temp.max ?? 0).toFixed(1)} °C`
+      board: `${temp.main ? (temp.main).toFixed(1) : '-' } °C`,
+      chipset: `${temp.chipset ? (temp.chipset).toFixed(1) : '-' } °C`,
+      max: `${temp.max ? (temp.max).toFixed(1) : '-' } °C`
     },
     memoryUsage: {
       value: `${((Math.round(mem.used) * 100) / Math.round(mem.total)).toFixed(2)} %`
