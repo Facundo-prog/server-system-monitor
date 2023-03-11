@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getSystemInfo, getRealTimeInfo } = require('../services/system');
+const { getSystemInfo, getRealtimeInfo } = require('../services/system');
 
 const router = Router();
   
@@ -9,7 +9,7 @@ router.get('/', async (rea, res) => {
 });
 
 router.get('/realtime', async (rea, res) => {
-  const data = await getRealTimeInfo();
+  const data = await getRealtimeInfo();
   res.json(data);
 });
 

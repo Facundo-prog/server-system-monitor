@@ -28,7 +28,7 @@ async function getSystemInfo(){
   }
 }
 
-async function getRealTimeInfo(){
+async function getRealtimeInfo(){
   const cpuLoad = await si.currentLoad();
   const cpuSpeed = await si.cpuCurrentSpeed();
   const temp = await si.cpuTemperature();
@@ -54,5 +54,5 @@ async function getRealTimeInfo(){
 
 module.exports = { 
   getSystemInfo,
-  getRealTimeInfo
+  getRealtimeInfo
 }

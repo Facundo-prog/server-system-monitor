@@ -23,4 +23,3 @@ app.listen(config.port, config.host, () => {
   console.log(`System monitor listen in port ${config.port}`);
 });
 
-
