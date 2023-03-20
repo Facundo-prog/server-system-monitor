@@ -20,58 +20,7 @@
     <p class="changeMessage">Cargando...</p>
   </div>
 
-  <script>
-    window.addEventListener('load', () => {
-      const errorMessage = document.getElementById('errorMessage');
-      const info = document.getElementById('info');
-      const realtime = document.getElementById('realtime');
-
-      fetch(`http://${location.host}/system-monitor/api/v1`)
-      .then((res) => res.json())
-      .then((metrics) => {
-        let html = "";
-
-        for(let type in metrics){
-          html += `<div class="metric"><h3>${type}</h3>`;
-          for(let name in metrics[type]){
-            html += `<li><b>${name}: </b>${metrics[type][name]}</li>`;
-          }
-          html += `</div>`
-        }
-
-        info.innerHTML = html;
-      })
-      .catch(() => {
-        info.innerHTML = '<p class="errorMessage" id="errorMessage">¡Error connection!</p>';
-      });
-
-      const interval = setInterval(() => {
-        fetch(`http://${location.host}/system-monitor/api/v1/realtime`)
-        .then((res) => res.json())
-        .then((val) => {
-          showRealtimeInfo(val);
-        })
-        .catch(() => {
-          realtime.innerHTML = '<p class="errorMessage" id="errorMessage">¡Error connection!</p>';
-          clearInterval(interval);
-        });
-      }, 5000);
-
-
-      function showRealtimeInfo(metrics){
-        let html = "";
-
-        for(let type in metrics){
-          html += `<div class="metric"><h3>${type}</h3>`;
-          for(let name in metrics[type]){
-            html += `<li><b>${name}: </b>${metrics[type][name]}</li>`;
-          }
-          html += `</div>`
-        }
-
-        realtime.innerHTML = html;
-      }
-    });
-  </script>
+  <script src="/system-monitor/socket.io/socket.io.js"></script>
+  <script src="/system-monitor/script.js"></script>
 </body>
 </html>
