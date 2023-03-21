@@ -6,6 +6,8 @@ async function getSystemInfo(){
   const cpu = await si.cpu();
   const mem = await si.mem();
 
+  console.log(mem);
+
   return {
     system,
     OS: {
@@ -21,9 +23,7 @@ async function getSystemInfo(){
       threads: String(cpu.cores)
     },
     memory: {
-      total: `${Math.round(mem.total / 1048576)} MB`,
-      free: `${Math.round(mem.free / 1048576)} MB`,
-      usage: `${Math.round(mem.used / 1048576)} MB`
+      total: `${Math.round(mem.total / 1048576)} MB`
     }
   }
 }
@@ -47,7 +47,7 @@ async function getRealtimeInfo(){
       max: `${temp.max ? (temp.max).toFixed(1) + '°C' : '-' }`
     },
     memoryUsage: {
-      value: `${((Math.round(mem.used) * 100) / Math.round(mem.total)).toFixed(2)} %`
+      value: `${(((Math.round(mem.used) - Math.round(mem.cached)) * 100) / Math.round(mem.total)).toFixed(2)} %`
     }
   }
 }
