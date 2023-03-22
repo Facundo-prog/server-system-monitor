@@ -6,8 +6,6 @@ async function getSystemInfo(){
   const cpu = await si.cpu();
   const mem = await si.mem();
 
-  console.log(mem);
-
   return {
     system,
     OS: {
