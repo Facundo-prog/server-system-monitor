@@ -12,11 +12,11 @@ async function initWebsockets(httpServer){
     // Connect socket
     socket.emit('systemInfo', systemInfo);
 
+    // Set emit interval
     if(!intervalUpdate){
       intervalUpdate = setInterval(async () => {
         realtimeInfo = await getRealtimeInfo();
         io.emit('realtimeInfo', realtimeInfo);
-        console.log("Send data");
       }, 2000);
     }
 
@@ -24,7 +24,6 @@ async function initWebsockets(httpServer){
     socket.on('disconnect', async () => {
       const sockets = await io.fetchSockets();
       if(sockets.length <= 0){
-        console.log("No hay sokets");
         clearInterval(intervalUpdate);
         intervalUpdate = null;
       }
