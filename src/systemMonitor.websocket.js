@@ -6,28 +6,27 @@ async function initWebsockets(httpServer){
   const systemInfo = await getSystemInfo();
 
   let realtimeInfo = {};
-  let intervalUpdate;
+  let intervalUpdate = null;
 
   io.on('connect', socket => {
-    intervalUpdate = setInterval(async () => {
-      realtimeInfo = await getRealtimeInfo();
-    }, 1000);
-
-    // Send realtime information
-    const intervalSend = setInterval(() => {
-      socket.emit('realtimeInfo', realtimeInfo);
-    }, 1000);
-
     // Connect socket
     socket.emit('systemInfo', systemInfo);
 
+    if(!intervalUpdate){
+      intervalUpdate = setInterval(async () => {
+        realtimeInfo = await getRealtimeInfo();
+        io.emit('realtimeInfo', realtimeInfo);
+        console.log("Send data");
+      }, 2000);
+    }
+
     // Disconnect socket
     socket.on('disconnect', async () => {
-      clearInterval(intervalSend);
-
       const sockets = await io.fetchSockets();
       if(sockets.length <= 0){
+        console.log("No hay sokets");
         clearInterval(intervalUpdate);
+        intervalUpdate = null;
       }
     });
   });
