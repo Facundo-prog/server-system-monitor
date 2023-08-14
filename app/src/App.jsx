@@ -1,33 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useContext, useRef } from 'react'
+
+import './styles.css';
+import { WebsocketContext } from './providers/Websocket';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const socket = useContext(WebsocketContext);
+  const info = useRef();
+  const realtime = useRef();
+
+  socket.on('systemInfo', (metrics) => {
+    let html = "";
+  
+    for(let type in metrics){
+      html += `<div class="metric"><h3>${type}</h3>`;
+      for(let name in metrics[type]){
+        html += `<li><b>${name}: </b>${metrics[type][name]}</li>`;
+      }
+      html += `</div>`
+    }
+  
+    setTimeout(() => info.current.innerHTML = html, 100);
+  });
+  
+  socket.on('realtimeInfo', (metrics) => {
+    let html = "";
+  
+    for(let type in metrics){
+      html += `<div class="metric"><h3>${type}</h3>`;
+      for(let name in metrics[type]){
+        html += `<li><b>${name}: </b>${metrics[type][name]}</li>`;
+      }
+      html += `</div>`
+    }
+  
+    realtime.current.innerHTML = html;
+  });
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h2>System information</h2>
+      <div className="metricsContainer" ref={info}>
+        <p className="changeMessage">Cargando...</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      
+      <h2>Realtime information</h2>
+      <div className="metricsContainer" ref={realtime}>
+        <p className="changeMessage">Cargando...</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
