@@ -1,8 +1,16 @@
-require('dotenv').config();
+import dotenv from "dotenv";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const config = {
-  port: process.env.PORT || 3000,
-  host: process.env.HOST || 'localhost'
-}
+  env: process.env.NODE_ENV ?? 'dev',
+  rootPath: path.join(__dirname, '../') ?? "",
+  port: process.env.PORT ?? 3002,
+} 
 
-module.exports = config;
+export default config;
