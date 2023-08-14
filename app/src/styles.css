@@ -1,5 +1,11 @@
+@font-face {
+  font-family: CalibriFont;
+  src: local(calibri), url(./font/calibri.ttf);
+}
+
+
 *{
-  font-family: sans-serif;
+  font-family: CalibriFont, Calibri, sans-serif, Arial;
   color: #1b1b1b;
 }
 
