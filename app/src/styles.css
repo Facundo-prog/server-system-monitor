@@ -3,11 +3,38 @@
   src: local(calibri), url(./font/calibri.ttf);
 }
 
-
 *{
-  font-family: CalibriFont, Calibri, sans-serif, Arial;
-  color: #1b1b1b;
+  margin:0px;
+  padding:0px;
+  box-sizing: border-box;
 }
+
+:root{
+  --grayDark:#3b3b3b;
+  --grayLight:#4A3933;
+  --orangeLight:#F0A500;
+  --salmon:#F54748;
+  --bgLight:#fdf7ea;
+  --green:#5a885a;
+  --blue:#343F56;
+  --black:#222;
+  --bgProject:#D2D3C9;
+  --good: #1f8116;
+  --error: #be3810;
+}
+
+
+body{
+  letter-spacing: 0.5px;
+  font-family: CalibriFont, Calibri, sans-serif, Arial;
+  font-size: 17px;
+}
+
+
+section {
+  padding: 0.5rem;
+}
+
 
 h2{
   margin-bottom: 0.5rem;

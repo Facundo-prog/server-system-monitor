@@ -38,7 +38,7 @@ function App() {
 
 
   return (
-    <>
+    <section>
       <h2>System information</h2>
       <div className="metricsContainer" ref={info}>
         <p className="changeMessage">Cargando...</p>
@@ -48,7 +48,7 @@ function App() {
       <div className="metricsContainer" ref={realtime}>
         <p className="changeMessage">Cargando...</p>
       </div>
-    </>
+    </section>
   )
 }
 
