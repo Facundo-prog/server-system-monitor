@@ -2,6 +2,6 @@ node_modules
 
 .env
 
-app/dist
-backend/static/assets
-backend/views/index.html
+package/backend/static/assets
+package/backend/views/index.html
+package/app/dist

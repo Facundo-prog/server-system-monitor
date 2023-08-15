@@ -1,0 +1,16 @@
+{
+  "name": "system-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:Facundo-prog/webchat_with_websockets.git",
+  "author": "facundo.prog <facundo.prog@gmail.com>",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "app:build": "npm run build -w app ",
+    "backend:dev": "npm run dev -w backend",
+    "backend:start": "npm run start -w backend"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
