@@ -4,4 +4,4 @@ node_modules
 
 app/dist
 backend/static/assets
-backend/views/*
+backend/views/index.html

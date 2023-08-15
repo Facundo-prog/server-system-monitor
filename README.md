@@ -14,7 +14,16 @@ Project is a simple resource monitor for your PC based on NodeJs
   * Copy "assets" folder from app/dist/static/ in backend/static/
   * Copy "index.html" file from app/dist/index.html in backend/views/
 
+End structure:
+  backend
+    |- static 
+    |   |- assets
+    |   |   |- ...
+    |   |- favicon.ico
+    |
+    |- views
+    |   |-index.html
+
 * Run 
  * Yarn: cd backend && yarn dev
  * NPM: cd backend && npm run dev
-
