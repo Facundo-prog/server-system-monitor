@@ -1,5 +1,7 @@
 node_modules
 
 .env
+
+app/dist
 backend/static/assets
 backend/views/*
