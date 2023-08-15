@@ -16,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-if(config.env === 'dev') app.use('/', express.static('./static'));
 
+if(config.env === 'dev') app.use('/static', express.static('./static'));
 app.use('/', router);
 
 

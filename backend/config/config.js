@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const config = {
   env: process.env.NODE_ENV ?? 'dev',
   rootPath: path.join(__dirname, '../') ?? "",
-  port: process.env.PORT ?? 3002,
+  port: process.env.PORT ?? 3000,
 } 
 
 export default config;
